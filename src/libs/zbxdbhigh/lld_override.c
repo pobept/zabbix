@@ -226,7 +226,7 @@ void	zbx_load_lld_override_operations(const zbx_vector_uint64_t *overrideids, ch
 
 		ZBX_STR2UINT64(override_operation->override_operationid, row[1]);
 		override_operation->operationtype = (unsigned char)atoi(row[2]);
-		override_operation->operator = (unsigned char)atoi(row[3]);
+		override_operation->operator_ = (unsigned char)atoi(row[3]);
 		override_operation->value = zbx_strdup(NULL, row[4]);
 
 		override_operation->status = FAIL == DBis_null(row[5]) ? (unsigned char)atoi(row[5]) :

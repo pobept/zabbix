@@ -612,7 +612,7 @@ static void	lld_dump_overrides(const zbx_vector_ptr_t *overrides)
 			zabbix_log(LOG_LEVEL_TRACE, "    override_operationid:" ZBX_FS_UI64,
 					override_operation->override_operationid);
 			zabbix_log(LOG_LEVEL_TRACE, "    operationobject: %d", override_operation->operationtype);
-			zabbix_log(LOG_LEVEL_TRACE, "    operator: %d", override_operation->operator);
+			zabbix_log(LOG_LEVEL_TRACE, "    operator: %d", override_operation->operator_);
 			zabbix_log(LOG_LEVEL_TRACE, "    value '%s'", override_operation->value);
 			zabbix_log(LOG_LEVEL_TRACE, "    status: %d", override_operation->status);
 			zabbix_log(LOG_LEVEL_TRACE, "    discover: %d", override_operation->discover);
@@ -755,7 +755,7 @@ void	lld_override_item(const zbx_vector_ptr_t *overrides, const char *name, cons
 					name);
 
 			if (FAIL == regexp_strmatch_condition(name, override_operation->value,
-					override_operation->operator))
+					override_operation->operator_))
 			{
 				zabbix_log(LOG_LEVEL_TRACE, "%s():FAIL", __func__);
 				continue;
@@ -827,7 +827,7 @@ void	lld_override_trigger(const zbx_vector_ptr_t *overrides, const char *name, u
 					name);
 
 			if (FAIL == regexp_strmatch_condition(name, override_operation->value,
-					override_operation->operator))
+					override_operation->operator_))
 			{
 				zabbix_log(LOG_LEVEL_TRACE, "%s():FAIL", __func__);
 				continue;
@@ -894,7 +894,7 @@ void	lld_override_host(const zbx_vector_ptr_t *overrides, const char *name, zbx_
 					name);
 
 			if (FAIL == regexp_strmatch_condition(name, override_operation->value,
-					override_operation->operator))
+					override_operation->operator_))
 			{
 				zabbix_log(LOG_LEVEL_TRACE, "%s():FAIL", __func__);
 				continue;
@@ -962,7 +962,7 @@ void	lld_override_graph(const zbx_vector_ptr_t *overrides, const char *name,	uns
 					name);
 
 			if (FAIL == regexp_strmatch_condition(name, override_operation->value,
-					override_operation->operator))
+					override_operation->operator_))
 			{
 				zabbix_log(LOG_LEVEL_TRACE, "%s():FAIL", __func__);
 				continue;
@@ -997,7 +997,7 @@ int	lld_validate_item_override_no_discover(const zbx_vector_ptr_t *overrides, co
 			if (ZBX_LLD_OVERRIDE_OP_OBJECT_ITEM == override_operation->operationtype &&
 					ZBX_PROTOTYPE_NO_DISCOVER == override_operation->discover &&
 					SUCCEED == regexp_strmatch_condition(name, override_operation->value,
-					override_operation->operator))
+					override_operation->operator_))
 			{
 				return FAIL;
 			}

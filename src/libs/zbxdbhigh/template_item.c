@@ -2383,11 +2383,11 @@ static void	save_template_lld_overrides(zbx_vector_ptr_t *overrides, zbx_hashset
 			override_operation = (zbx_lld_override_operation_t *)override->override_operations.values[j];
 
 			zbx_db_insert_add_values(&db_insert_ooperations, override_operationid, overrideid,
-					(int)override_operation->operationtype, (int)override_operation->operator,
+					(int)override_operation->operationtype, (int)override_operation->operator_,
 					override_operation->value);
 
 			zbx_audit_discovery_rule_update_json_add_lld_override_operation((*pitem)->itemid,
-					overrideid, override_operationid, (int)override_operation->operator,
+					overrideid, override_operationid, (int)override_operation->operator_,
 					override_operation->value);
 
 			if (ZBX_PROTOTYPE_STATUS_COUNT != override_operation->status)

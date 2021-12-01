@@ -925,7 +925,7 @@ typedef struct
 	zbx_vector_db_tag_ptr_t	tags;
 	zbx_vector_uint64_t	templateids;
 	unsigned char		operationtype;
-	unsigned char		operator;
+	unsigned char		operator_;
 	unsigned char		status;
 	unsigned char		severity;
 	unsigned char		inventory_mode;
